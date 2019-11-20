@@ -1,7 +1,7 @@
 <template>
   <aside class="sidebar">
     <div class="logo">
-      <a href="#"><img src="../../assets/bitmap.png" alt="logo" width="40"/></a>
+      <a href="#"><img src="../../assets/bitmap.png" alt="logo" width="35"/></a>
     </div>
     <nav class="sidebar-nav">
       <ul>

@@ -31,15 +31,20 @@ export default {
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  padding: 20px;
+  padding: 17px;
   box-sizing: border-box;
 }
 
 .search input {
   margin-right: 50px;
   border-radius: 20px;
-  padding: 10px;
+  padding: 5px 30px;
   border: 1px solid #c9d3c9ff;
+  font-size: 21px;
+}
+
+.search input::placeholder {
+  color: #000;
 }
 
 .start-time {
