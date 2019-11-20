@@ -9,10 +9,10 @@
       <div class="login-form">
         <form>
           <div class="input-control">
-            <input type="text" placeholder="نام کاربری" />
+            <input class="input-style-1" type="text" placeholder="نام کاربری" />
           </div>
           <div class="input-control">
-            <input type="text" placeholder="رمز عبور" />
+            <input class="input-style-1" type="text" placeholder="رمز عبور" />
           </div>
           <button class="login-button">ورود</button>
           <a href="#" class="forget-password"
@@ -45,13 +45,6 @@ body {
   padding: 15px;
   display: flex;
   justify-content: space-between;
-}
-
-.login-form input {
-  background-color: transparent;
-  border: 0;
-  border-bottom: 2px solid #424243ff;
-  padding: 5px;
 }
 
 .login-form form {
