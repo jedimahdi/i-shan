@@ -31,7 +31,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  padding: 13px;
+  padding: 20px;
   box-sizing: border-box;
 }
 

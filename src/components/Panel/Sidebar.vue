@@ -1,6 +1,8 @@
 <template>
   <aside class="sidebar">
-    <div class="logo">Logo</div>
+    <div class="logo">
+      <a href="#"><img src="../../assets/bitmap.png" alt="logo" width="40"/></a>
+    </div>
     <nav class="sidebar-nav">
       <ul>
         <li class="active">
@@ -71,7 +73,7 @@ export default {
 .logo {
   background-color: #43b649ff;
   text-align: center;
-  padding: 20px 32px;
+  padding: 15px 32px;
 }
 
 .sidebar-nav .lnr {
