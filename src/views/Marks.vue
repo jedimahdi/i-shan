@@ -26,7 +26,7 @@
       </div>
     </Box>
 
-    <Box>
+    <Box class="grade-table">
       <table id="grades-table">
         <thead>
           <tr>
@@ -162,6 +162,10 @@ export default {
 
 .average-total-marks {
   color: #f3976fff;
+}
+
+.grade-table {
+  overflow-x: auto;
 }
 
 #grades-table {

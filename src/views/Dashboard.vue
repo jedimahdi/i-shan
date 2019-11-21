@@ -3,6 +3,7 @@
     <header class="top-bar">
       <div class="search">
         <input type="text" placeholder="جستجو" />
+        <span class="lnr lnr-magnifier"></span>
       </div>
       <div class="start-time">
         <input type="text" class="input-style-1" placeholder="زمان شروع دوره" />
@@ -35,6 +36,17 @@ export default {
   box-sizing: border-box;
 }
 
+.search {
+  position: relative;
+}
+
+.search .lnr {
+  position: absolute;
+  left: 30px;
+  top: 10px;
+  color: #c7d1c7ff;
+}
+
 .search input {
   margin-right: 50px;
   border-radius: 20px;
@@ -45,6 +57,7 @@ export default {
 
 .search input::placeholder {
   color: #000;
+  font-family: "Segoe UI";
 }
 
 .start-time {

@@ -1,12 +1,23 @@
 <template>
-  <div class="box">
+  <div class="box" v-bind:class="isOverflow">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Box"
+  name: "Box",
+  props: {
+    overflowx: {
+      type: Boolean,
+      default: true
+    }
+  },
+  computed: {
+    isOverflow: function() {
+      return this.overflowx ? "overflowx" : "";
+    }
+  }
 };
 </script>
 
@@ -17,5 +28,9 @@ export default {
   border-radius: 20px;
   padding: 20px 40px;
   margin-bottom: 50px;
+  box-sizing: border-box;
+}
+.overflowx {
+  overflow-x: auto;
 }
 </style>
