@@ -47,7 +47,7 @@ export default {
 .course-info {
   color: #8f9199ff;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 250px;
   border: 1px solid #e3e3e3ff;
 }

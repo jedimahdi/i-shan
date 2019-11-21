@@ -3,6 +3,7 @@
     <Course />
     <Course />
     <Course />
+    <Course />
   </div>
 </template>
 

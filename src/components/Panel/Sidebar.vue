@@ -5,23 +5,35 @@
     </div>
     <nav class="sidebar-nav">
       <ul>
-        <li class="active">
-          <a href="#"><span class="lnr lnr-home"></span>خانه</a>
+        <li>
+          <router-link to="/"
+            ><span class="lnr lnr-home"></span>خانه</router-link
+          >
         </li>
         <li>
-          <a href="#"><span class="lnr lnr-license"></span>نمرات</a>
+          <router-link to="/marks"
+            ><span class="lnr lnr-license"></span>نمرات</router-link
+          >
         </li>
         <li>
-          <a href="#"><span class="lnr lnr-cog"></span>تنظیمات</a>
+          <router-link to="/settings"
+            ><span class="lnr lnr-cog"></span>تنظیمات</router-link
+          >
         </li>
         <li>
-          <a href="#"><span class="lnr lnr-phone-handset"></span>تماس با ما</a>
+          <router-link to="/contact"
+            ><span class="lnr lnr-phone-handset"></span>تماس با ما</router-link
+          >
         </li>
         <li>
-          <a href="#"><span class="lnr lnr-inbox"></span>صندوق پیام</a>
+          <router-link to="/inbox"
+            ><span class="lnr lnr-inbox"></span>صندوق پیام</router-link
+          >
         </li>
         <li>
-          <a href="#"><span class="lnr lnr-download"></span>دانلود</a>
+          <router-link to="/download"
+            ><span class="lnr lnr-download"></span>دانلود</router-link
+          >
         </li>
       </ul>
     </nav>
@@ -59,7 +71,7 @@ export default {
   background-color: #2e3342ff;
 }
 
-.sidebar-nav ul li.active a {
+.sidebar-nav ul li a.router-link-exact-active {
   color: #42b547ff;
 }
 .sidebar-nav ul li a {
