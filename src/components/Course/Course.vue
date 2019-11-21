@@ -1,5 +1,5 @@
 <template>
-  <div class="course">
+  <Box class="course">
     <div class="course-detail">
       <h5 class="course-category">
         <span class="lnr lnr-tag"></span> دوره انیمیشن سازی
@@ -23,25 +23,26 @@
         <span class="red-mode">6</span> روز مانده تا کلاس بعدی
       </div>
     </div>
-  </div>
+  </Box>
 </template>
 
 <script>
+import Box from "../Box/Box";
+
 export default {
-  name: "Course"
+  name: "Course",
+  components: {
+    Box
+  }
 };
 </script>
 
 <style scoped>
 .course {
   background-color: #f4f4f5ff;
-  padding: 10px 0;
   width: 600px;
-  margin-bottom: 50px;
   display: flex;
   justify-content: space-around;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(10, 10, 10, 0.2);
 }
 
 .course-info {

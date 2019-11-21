@@ -23,7 +23,7 @@ export default {
   height: 100%;
 }
 .outer-container {
-  height: 100%;
+  min-height: 100%;
   background-color: #e5e5e4ff;
   padding-right: 100px;
 }

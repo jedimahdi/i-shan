@@ -1,26 +1,128 @@
 <template>
   <div class="marks">
-    <Box class="select-course box-shadow">
-      <label for="course-select">انتخاب دوره</label>
+    <Box class="select-course">
+      <label class="box-title">انتخاب دوره</label>
+      <CustomSelect>
+        <option value="">یک دوره را انتخاب کنید</option>
+        <option value="">دوره انیمیشن سینمایی</option>
+      </CustomSelect>
+    </Box>
 
-      <div class="course-selector">
-        <select name="course" id="course-select">
-          <option value="">یک دوره را انتخاب کنید</option>
-          <option value="">دوره انیمیشن سینمایی</option>
-        </select>
-        <span class="lnr lnr-chevron-down-circle"></span>
+    <Box class="course-average">
+      <h5 class="box-title">مقایسه وضعیت هنرآموز با میانگین دوره</h5>
+      <div class="flex">
+        <RadarChart />
+        <div class="total-marks">
+          <div class="total-mark">
+            <h6>نمره کل هنرآموز</h6>
+            <small>60</small>
+          </div>
+
+          <div class="total-mark average-total-marks">
+            <h6>نمره میانگین دوره</h6>
+            <small>50</small>
+          </div>
+        </div>
       </div>
+    </Box>
+
+    <Box>
+      <table id="grades-table">
+        <thead>
+          <tr>
+            <th>موضوعات</th>
+            <th>هفته اول</th>
+            <th>هفته دوم</th>
+            <th>هفته سوم</th>
+            <th>هفته چهارم</th>
+            <th>هفته پنجم</th>
+            <th>هفته ششم</th>
+            <th>هفته هفتم</th>
+            <th>میانگین نمرات</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td>نمره کل</td>
+            <td>35</td>
+            <td>78</td>
+            <td>24</td>
+            <td>78</td>
+            <td>92</td>
+            <td>100</td>
+            <td>100</td>
+            <td>93</td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr>
+            <td>نورپردازی فضاهای داخلی</td>
+            <td>78</td>
+            <td>78</td>
+            <td>78</td>
+            <td>78</td>
+            <td>78</td>
+            <td>78</td>
+            <td>78</td>
+            <td>78</td>
+          </tr>
+          <tr>
+            <td>استفاده از دوربین</td>
+            <td>50</td>
+            <td>50</td>
+            <td>50</td>
+            <td>50</td>
+            <td>50</td>
+            <td>50</td>
+            <td>50</td>
+            <td>50</td>
+          </tr>
+          <tr>
+            <td>فضاسازی</td>
+            <td>63</td>
+            <td>63</td>
+            <td>63</td>
+            <td>63</td>
+            <td>63</td>
+            <td>63</td>
+            <td>63</td>
+            <td>63</td>
+          </tr>
+          <tr>
+            <td>استخوان بندی</td>
+            <td>59</td>
+            <td>59</td>
+            <td>59</td>
+            <td>59</td>
+            <td>59</td>
+            <td>59</td>
+            <td>59</td>
+            <td>59</td>
+          </tr>
+        </tbody>
+      </table>
+    </Box>
+
+    <Box>
+      <h5 class="box-title">نمودار پیشرفت هنرآموز</h5>
+      <LineChart />
     </Box>
   </div>
 </template>
 
 <script>
 import Box from "../components/Box/Box";
+import CustomSelect from "../components/CustomSelect/CustomSelect";
+import RadarChart from "../components/RadarChart/RadarChart";
+import LineChart from "../components/LineChart/LineChart";
 
 export default {
   name: "Marks",
   components: {
-    Box
+    RadarChart,
+    Box,
+    CustomSelect,
+    LineChart
   }
 };
 </script>
@@ -30,50 +132,70 @@ export default {
   padding: 50px;
 }
 .select-course {
-  background-color: #f3f3f5ff;
-  border-radius: 20px;
-  padding: 20px 40px;
   display: flex;
   align-items: center;
 }
 
-.select-course label {
-  font-size: 32px;
+.box-title {
+  font-size: 28px;
   color: #8f9199ff;
+  font-weight: 400;
 }
 
-.course-selector {
-  position: relative;
-  margin: auto;
+.flex {
+  display: flex;
 }
 
-#course-select {
-  border-radius: 10px;
-  border: 0;
-  padding: 10px;
-  padding-right: 100px;
-  width: 400px;
-  height: 50px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-size: 20px;
-  display: block;
-  position: relative;
-}
-
-.course-selector .lnr {
-  color: #000;
-  padding: 12px 8px;
-  position: absolute;
-  left: 10px;
-  top: 3px;
-  z-index: 1;
+.total-mark {
   text-align: center;
-  width: 10%;
-  height: 100%;
-  pointer-events: none;
-  box-sizing: border-box;
-  font-size: 20px;
+  margin: 60px 0;
+}
+
+.total-mark h6 {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.total-mark small {
+  font-size: 28px;
+}
+
+.average-total-marks {
+  color: #f3976fff;
+}
+
+#grades-table {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px;
+}
+
+#grades-table td,
+#grades-table th {
+  padding: 8px;
+}
+
+#grades-table tr:nth-child(even) {
+  background-color: #e3e3e3ff;
+}
+
+#grades-table tr:hover {
+  background-color: #ddd;
+}
+
+#grades-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #f37035ff;
+  color: #e3e3e3ff;
+}
+
+#grades-table th:nth-child(even) {
+  color: #f37035ff;
+  background: #e3e3e3ff;
+}
+#grades-table tfoot tr {
+  background-color: #42b547ff;
 }
 </style>
