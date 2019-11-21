@@ -2,7 +2,7 @@
   <div class="marks">
     <Box class="select-course">
       <label class="box-title">انتخاب دوره</label>
-      <CustomSelect>
+      <CustomSelect v-bind:center="true" v-bind:width="400">
         <option value="">یک دوره را انتخاب کنید</option>
         <option value="">دوره انیمیشن سینمایی</option>
       </CustomSelect>
