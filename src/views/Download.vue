@@ -1,13 +1,30 @@
 <template>
-  <div class="download">
-    Download
+  <div class="downloads-page">
+    <Box class="download">
+      <DownloadsTable />
+    </Box>
   </div>
 </template>
 
 <script>
+import DownloadsTable from "../components/DownloadsTable/DownloadsTable";
+import Box from "../components/Box/Box";
+
 export default {
-  name: "Download"
+  name: "Download",
+  components: {
+    DownloadsTable,
+    Box
+  }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.downloads-page {
+  padding: 40px;
+}
+.download {
+  background-color: #fff;
+  padding: 40px 100px;
+}
+</style>
