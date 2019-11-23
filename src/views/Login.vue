@@ -1,5 +1,5 @@
 <template>
-  <div class="login-page">
+  <section class="login-page">
     <div class="login">
       <div class="site-info">
         <h1>ایشن</h1>
@@ -21,7 +21,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <style>

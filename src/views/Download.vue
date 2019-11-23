@@ -1,9 +1,9 @@
 <template>
-  <div class="downloads-page">
+  <section class="downloads-page">
     <Box class="download">
       <DownloadsTable />
     </Box>
-  </div>
+  </section>
 </template>
 
 <script>

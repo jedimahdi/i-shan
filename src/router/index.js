@@ -8,6 +8,7 @@ import Marks from "../views/Marks";
 import Settings from "../views/Settings";
 import Contact from "../views/Contact";
 import Download from "../views/Download";
+import CourseVideos from "../views/CourseVideos";
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,10 @@ const routes = [
       {
         path: "download",
         component: Download
+      },
+      {
+        path: "course",
+        component: CourseVideos
       }
     ]
   },

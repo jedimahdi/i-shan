@@ -1,5 +1,5 @@
 <template>
-  <div class="contact">
+  <section class="contact">
     <div class="contact-form">
       <h4>با ما در تماس باشید</h4>
       <small>نظرات و پیشنهادات خود را بیان بفرمایید</small>
@@ -30,7 +30,7 @@
         <li><span class="lnr lnr-earth"></span> <span>i-shan.com</span></li>
       </ul>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="marks">
+  <section class="marks">
     <Box class="select-course">
       <label class="box-title">انتخاب دوره</label>
       <CustomSelect v-bind:center="true" v-bind:width="400">
@@ -34,7 +34,7 @@
       <h5 class="box-title">نمودار پیشرفت هنرآموز</h5>
       <LineChart />
     </Box>
-  </div>
+  </section>
 </template>
 
 <script>

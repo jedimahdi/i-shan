@@ -1,5 +1,5 @@
 <template>
-  <div class="settings">
+  <section class="settings">
     <div class="setting-group">
       <h4>تنظیمات ضاهر</h4>
       <Box>
@@ -59,7 +59,7 @@
         </SettingsOption>
       </Box>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

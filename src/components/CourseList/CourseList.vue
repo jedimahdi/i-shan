@@ -1,10 +1,10 @@
 <template>
-  <div class="courses">
+  <section class="courses">
     <Course />
     <Course />
     <Course />
     <Course />
-  </div>
+  </section>
 </template>
 
 <script>

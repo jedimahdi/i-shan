@@ -1,7 +1,7 @@
 <template>
-  <div class="inbox">
+  <section class="inbox">
     messages
-  </div>
+  </section>
 </template>
 
 <script>

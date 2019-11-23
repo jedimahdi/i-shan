@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <section class="dashboard">
     <header class="top-bar">
       <div class="search">
         <input type="text" placeholder="جستجو" />
@@ -12,7 +12,7 @@
     <div class="container dashboard-content">
       <CourseList />
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
