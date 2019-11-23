@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Course from "../Course/Course";
+import Course from "./Course";
 export default {
   name: "CourseList",
   components: {
