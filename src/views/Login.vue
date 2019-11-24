@@ -9,10 +9,22 @@
       <div class="login-form">
         <form>
           <div class="input-control">
-            <input class="input-style-1" type="text" placeholder="نام کاربری" />
+            <label for="username"><span class="lnr lnr-user"></span></label>
+            <input
+              class="input-style-1"
+              type="text"
+              id="username"
+              placeholder="نام کاربری"
+            />
           </div>
           <div class="input-control">
-            <input class="input-style-1" type="text" placeholder="رمز عبور" />
+            <label for="password"><span class="lnr lnr-lock"></span></label>
+            <input
+              class="input-style-1"
+              type="text"
+              id="password"
+              placeholder="رمز عبور"
+            />
           </div>
           <button class="login-button">ورود</button>
           <a href="#" class="forget-password"
@@ -40,7 +52,8 @@ body {
 }
 .login {
   width: 100%;
-  max-width: 520px;
+  max-width: 620px;
+  height: 200px;
   margin: auto;
   padding: 15px;
   display: flex;
@@ -54,17 +67,47 @@ body {
   height: 100%;
 }
 
+.login-form input {
+  font-size: 18px;
+  color: #c4cec4ff;
+}
+
+.login-form input::placeholder {
+  font-family: "Segoe UI";
+  font-weight: 300;
+}
+
+.login-form .lnr {
+  font-size: 24px;
+  margin-left: 15px;
+}
+
 .login-button {
   display: block;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: #43b649ff;
   border: 0;
   color: #fff;
-  padding: 5px 40px;
+  padding-bottom: 6px;
+  width: 150px;
+  margin: 0 auto;
+  font-size: 18px;
+  font-family: "Segoe UI";
 }
 
 a.forget-password {
   color: #ee7338ff;
   text-decoration: none;
+  text-align: center;
+}
+
+.site-info {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  text-align: center;
+}
+.site-info span {
+  display: block;
 }
 </style>
