@@ -57,7 +57,8 @@ body {
   margin: auto;
   padding: 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content:
+          space-between;
 }
 
 .login-form form {
