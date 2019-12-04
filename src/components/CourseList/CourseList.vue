@@ -1,16 +1,15 @@
 <template>
   <section class="courses">
-    <Course />
-    <Course />
-    <Course />
-    <Course />
+    <Course v-for="course in courses" :key="course.id" :course="course" />
   </section>
 </template>
 
 <script>
 import Course from "./Course";
+
 export default {
   name: "CourseList",
+  props: ["courses"],
   components: {
     Course
   }

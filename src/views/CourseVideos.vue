@@ -4,9 +4,7 @@
       <Accordion id="accordion-example-2" :content="example"></Accordion>
     </div>
     <div class="course-video">
-      <video muted="muted" controls id="videoPlayer">
-        <source src="http://localhost:3000/video" type="video/mp4" />
-      </video>
+      <video muted="muted" controls id="videoPlayer"></video>
 
       <Box>
         <div class="description-top">
@@ -50,6 +48,9 @@
 <script>
 import Accordion from "../components/Accordion/Accordion";
 import Box from "../components/Box/Box";
+// import Hls from 'hls.js';
+import crypto from "crypto-js";
+import axios from "axios";
 
 const exampleData = [
   {
@@ -100,6 +101,39 @@ export default {
     return {
       example: exampleData
     };
+  },
+  mounted() {
+    const video = document.getElementById("videoPlayer");
+
+    console.log(video);
+    // const hls = new Hls({
+    //   enableSoftwareAES: true,
+    // });
+
+    // console.log(Buffer.from(iv), Buffer.from(key, "hex"));
+    // const decipher = crypto.createDecipheriv(
+    //   "aes-256-cbc",
+    //   Buffer.from(key, "hex"),
+    //   Buffer.from(iv)
+    // );
+    axios.get("http://localhost:3000/video").then(() => {
+      var encrypted = crypto.AES.encrypt("Message", "ishan");
+
+      var bytes = crypto.AES.decrypt(encrypted, "ishan");
+      console.log(bytes.words.toString(crypto.enc.Utf8));
+      // console.log(JSON.parse(bytes.toString()))
+      const d = bytes.toString(crypto.enc.Utf8);
+      console.log(d);
+      // const decrpy_data = JSON.parse('[' + bytes.words.toString(crypto.enc.Utf8) + ']');
+
+      // console.log(decrpy_data)
+
+      // console.log(data)
+      // decipher.setAutoPadding(true);
+      // let decrypt = decipher.update(data, "base64", "utf8");
+      // decrypt += decipher.final();
+      // console.log(decrypt)
+    });
   }
 };
 </script>

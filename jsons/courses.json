@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "مدلینگ با استفاده از Maya",
+    "category": "دوره MAYA",
+    "duration": 34383,
+    "attachments": 25,
+    "messages": [3, 0]
+  },
+  {
+    "id": 2,
+    "title": "اموزش انیمیشن سازی",
+    "category": "دوره انیمیشن سازی",
+    "duration": 24383,
+    "attachments": 8,
+    "messages": [5, 0]
+  }
+]

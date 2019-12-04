@@ -10,17 +10,24 @@
       </div>
     </header>
     <div class="container dashboard-content">
-      <CourseList />
+      <CourseList :courses="courses" />
     </div>
   </section>
 </template>
 
 <script>
 import CourseList from "../components/CourseList/CourseList";
+import COURSES_DATA from "../../jsons/courses.json";
+
 export default {
   name: "Dashboard",
   components: {
     CourseList
+  },
+  data: function() {
+    return {
+      courses: COURSES_DATA
+    };
   }
 };
 </script>

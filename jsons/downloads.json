@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "filename": "test file name",
+    "size": 20,
+    "createdOn": 1575458648
+  },
+  {
+    "id": 2,
+    "filename": "file 2",
+    "size": 40,
+    "createdOn": 1575488764
+  },
+  {
+    "id": 3,
+    "filename": "file 3",
+    "size": 30,
+    "createdOn": 1575488807
+  },
+  {
+    "id": 4,
+    "filename": "file 4",
+    "size": 180,
+    "createdOn": 1575488807
+  },
+  {
+    "id": 5,
+    "filename": "file 5",
+    "size": 130,
+    "createdOn": 1575488861
+  }
+]
