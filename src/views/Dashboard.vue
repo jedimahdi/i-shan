@@ -10,7 +10,8 @@
       </div>
     </header>
     <div class="container dashboard-content">
-      <CourseList :courses="courses" />
+      <LoadingSpinner :asOverlay="true" v-if="isLoading" />
+      <CourseList v-if="!isLoading" :courses="courses" />
     </div>
   </section>
 </template>
@@ -18,16 +19,31 @@
 <script>
 import CourseList from "../components/CourseList/CourseList";
 import COURSES_DATA from "../../jsons/courses.json";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import api from "../utils/api";
 
 export default {
   name: "Dashboard",
   components: {
-    CourseList
+    CourseList,
+    LoadingSpinner
   },
   data: function() {
     return {
-      courses: COURSES_DATA
+      courses: COURSES_DATA,
+      isLoading: true
     };
+  },
+  mounted() {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    };
+    api.get("recCourse", { method: "get" }, { headers }).then(res => {
+      this.courses = res.data;
+      console.log(res);
+      this.isLoading = false;
+    });
   }
 };
 </script>

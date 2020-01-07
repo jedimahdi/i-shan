@@ -1,6 +1,6 @@
 <template>
   <section class="courses">
-    <Course v-for="course in courses" :key="course.id" :course="course" />
+    <Course v-for="course in courses" :key="course._id" :course="course" />
   </section>
 </template>
 

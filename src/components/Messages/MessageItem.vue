@@ -3,10 +3,10 @@
     class="message-item"
     :class="{ active: message.active }"
     @click="toggle"
-    :id="message.id"
+    :id="message._id"
   >
     <h5>{{ message.title }}</h5>
-    <p>{{ message.text }}</p>
+    <p>{{ normalizeText(message.body) }}</p>
   </div>
 </template>
 
@@ -23,8 +23,15 @@ export default {
           item.message.active = false;
         }
       });
+    },
+    normalizeText(text) {
+      if (text) {
+        return text.substring(0, 38) + " ...";
+      }
+      return text;
     }
-  }
+  },
+  computed: {}
 };
 </script>
 

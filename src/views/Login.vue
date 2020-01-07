@@ -2,12 +2,13 @@
   <section class="login-page">
     <div class="login">
       <div class="site-info">
+        <img src="../assets/logo.svg" alt="Logo" class="login__logo" />
         <h1>ایشن</h1>
         <small>شرکت دانش و فناوری اینده روشن</small>
         <span>i-shan.ir</span>
       </div>
       <div class="login-form">
-        <form>
+        <form v-on:submit.prevent="handleSubmit">
           <div class="input-control">
             <label for="username"><span class="lnr lnr-user"></span></label>
             <input
@@ -15,18 +16,23 @@
               type="text"
               id="username"
               placeholder="نام کاربری"
+              v-model="mphone"
+              required
+              autofocus
             />
           </div>
           <div class="input-control">
             <label for="password"><span class="lnr lnr-lock"></span></label>
             <input
               class="input-style-1"
-              type="text"
+              type="password"
               id="password"
               placeholder="رمز عبور"
+              v-model="pass"
+              required
             />
           </div>
-          <button class="login-button">ورود</button>
+          <button class="login-button" type="submit">ورود</button>
           <a href="#" class="forget-password"
             >رمز عبور خود را فراموش کرده اید؟
           </a>
@@ -35,6 +41,40 @@
     </div>
   </section>
 </template>
+
+<script>
+import api from "../utils/api";
+
+export default {
+  name: "Login",
+  data: function() {
+    return {
+      mphone: "",
+      pass: ""
+    };
+  },
+  methods: {
+    handleSubmit: function() {
+      api
+        .post("login", {
+          mphone: this.mphone,
+          pass: this.pass
+        })
+        .then(res => {
+          console.log(res);
+          localStorage.setItem("jwt", res.data.access_token);
+          localStorage.setItem("refresh_token", res.data.refresh_token);
+          localStorage.setItem("user", JSON.stringify(res.data.user_data));
+          localStorage.setItem("login_time", new Date());
+          this.$router.push("/");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
+};
+</script>
 
 <style>
 .login-page {
@@ -109,5 +149,11 @@ a.forget-password {
 }
 .site-info span {
   display: block;
+}
+
+.login__logo {
+  width: 90px;
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 </style>

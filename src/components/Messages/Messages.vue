@@ -3,7 +3,7 @@
     <Box class="message-items">
       <MessageItem
         v-for="message in messages"
-        :key="message.id"
+        :key="message._id"
         :message="message"
       />
     </Box>
@@ -28,7 +28,8 @@ export default {
   props: ["messages"],
   methods: {
     getActiveMessage() {
-      return this.messages.find(item => item.active == true);
+      const actMessage = this.messages.find(item => item.active == true);
+      return actMessage;
     }
   }
 };

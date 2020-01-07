@@ -3,17 +3,17 @@
     <div class="contact-form">
       <h4>با ما در تماس باشید</h4>
       <small>نظرات و پیشنهادات خود را بیان بفرمایید</small>
-      <form action="">
-        <input type="text" placeholder="نام و نام خانوادگی" />
-        <input type="text" placeholder="ایمیل" />
+      <form v-on:submit.prevent="handleSubmit">
+        <input type="text" v-model="title" placeholder="عنوان" />
         <textarea
-          name="comment"
+          name="body"
+          v-model="body"
           id="comment"
           cols="30"
           rows="10"
           placeholder="نظرات و پیشنهادات"
         ></textarea>
-        <button>ارسال</button>
+        <button type="submit">ارسال</button>
       </form>
     </div>
     <div class="contact-info">
@@ -34,8 +34,36 @@
 </template>
 
 <script>
+// import axios from "axios";
+// import { API_BASE_URL } from "../../vars";
+import api from "../utils/api";
+
 export default {
-  name: "Contact"
+  name: "Contact",
+  data: function() {
+    return {
+      title: "",
+      body: ""
+    };
+  },
+  methods: {
+    handleSubmit: function() {
+      const headers = {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`
+      };
+      api
+        .post(
+          "mail/send",
+          { title: this.title, body: this.body, to: "admin" },
+          { headers }
+        )
+        .then(res => {
+          console.log(res);
+          this.title = "";
+          this.body = "";
+        });
+    }
+  }
 };
 </script>
 

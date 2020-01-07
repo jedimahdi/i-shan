@@ -27,7 +27,7 @@ export default {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("jwt")}`
     };
-    api.post("mail/get", { method: "get" }, { headers }).then(res => {
+    api.post("mail/get", { method: "sent" }, { headers }).then(res => {
       let messages = res.data.map(message => ({ ...message, active: false }));
       if (messages.length > 0) {
         messages[0].active = true;

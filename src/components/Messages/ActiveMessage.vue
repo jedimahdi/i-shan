@@ -3,7 +3,7 @@
     <Box>
       <div v-if="message">
         <h4>{{ message.title }}</h4>
-        <p>{{ message.text }}</p>
+        <p>{{ message.body }}</p>
       </div>
       <div v-else>هیچ پیامی انتخاب نشده است.</div>
     </Box>

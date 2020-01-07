@@ -5,8 +5,10 @@
       <SidebarLink link="/marks" icon="license">نمرات</SidebarLink>
       <SidebarLink link="/settings" icon="cog">تنظیمات</SidebarLink>
       <SidebarLink link="/contact" icon="phone-handset">تماس با ما</SidebarLink>
-      <SidebarLink link="/inbox" icon="inbox">صندوق پیام</SidebarLink>
+      <SidebarLink link="/mail/inbox" icon="inbox">صندوق پیام</SidebarLink>
+      <SidebarLink link="/mail/sent" icon="inbox">پیام های ارسالی</SidebarLink>
       <SidebarLink link="/download" icon="download">دانلود</SidebarLink>
+      <SidebarLink link="/logout" icon="exit">خروج</SidebarLink>
     </ul>
   </nav>
 </template>

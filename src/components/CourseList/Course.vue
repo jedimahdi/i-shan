@@ -2,19 +2,20 @@
   <Box class="course" v-bind:overflowx="false">
     <div class="course-detail">
       <h5 class="course-category">
-        <span class="lnr lnr-tag"></span> {{ course.category }}
+        <!-- <span class="lnr lnr-tag"></span> {{ course.category }} -->
       </h5>
       <h4 class="course-title">{{ course.title }}</h4>
       <div class="course-info">
         <div class="course-length">
           <span class="lnr lnr-clock"></span>
-          {{ parseInt(course.duration / (60 * 24)) }}:10:25
+          06:10:25
+          <!-- {{ parseInt(course.duration / (60 * 24)) }}:10:25 -->
         </div>
         <div class="course-files">
-          <span class="lnr lnr-paperclip"></span> {{ course.attachments }}
+          <!-- <span class="lnr lnr-paperclip"></span> {{ course.attachments }} -->
         </div>
         <div class="course-inbox">
-          <span class="lnr lnr-inbox"></span> {{ course.messages[0] }}
+          <!-- <span class="lnr lnr-inbox"></span> {{ course.messages[0] }} -->
         </div>
       </div>
     </div>
