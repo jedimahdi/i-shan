@@ -57,7 +57,7 @@ export default {
           { title: this.title, body: this.body, to: "admin" },
           { headers }
         )
-        .then(res => {
+        .then(() => {
           this.title = "";
           this.body = "";
         });

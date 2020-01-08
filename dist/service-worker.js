@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.550ce7029366250b261dd22a3a0a39f1.js"
+  "/precache-manifest.95f2fc8f425deb6a05506a6d1ff03151.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "ishan"});

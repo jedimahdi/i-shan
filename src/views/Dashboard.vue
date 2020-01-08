@@ -19,7 +19,6 @@
 <script>
 import CourseList from "../components/CourseList/CourseList";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
-import COURSE_DATA from "../../jsons/courses.json";
 import api from "../utils/api";
 
 export default {
@@ -30,8 +29,8 @@ export default {
   },
   data: function() {
     return {
-      courses: COURSE_DATA,
-      isLoading: false
+      courses: [],
+      isLoading: true
     };
   },
   mounted() {
@@ -48,7 +47,6 @@ export default {
         this.$store.commit("set_courses", {
           courses: res.data
         });
-        console.log(res);
         this.isLoading = false;
       });
     }
