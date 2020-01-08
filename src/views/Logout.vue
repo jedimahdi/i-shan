@@ -8,17 +8,13 @@ export default {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("refresh_token")}`
     };
-    api.post("logout/refresh", {}, { headers }).then(res => {
-      console.log(res);
-    });
+    api.post("logout/refresh", {}, { headers }).then(res => {});
 
     headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("jwt")}`
     };
-    api.post("logout/access", {}, { headers }).then(res => {
-      console.log(res);
-    });
+    api.post("logout/access", {}, { headers }).then(res => {});
 
     // api.defaults.headers.common[
     //   "Authorization"

@@ -6,6 +6,8 @@
       :item="item"
       :groupId="groupId"
       :key="item.id"
+      :activeId="activeId"
+      @changeActive="onChangeActive"
     >
     </AccordionItem>
   </dl>
@@ -27,15 +29,34 @@ export default {
     multiple: {
       type: Boolean,
       default: false
+    },
+    initActive: {
+      type: Object
     }
   },
   data() {
     return {
-      groupId: null
+      groupId: null,
+      activeId: ""
     };
   },
   mounted() {
     this.groupId = this.$el.id;
+    if (this.initActive) {
+      this.activeId = this.initActive.vid;
+    }
+    // console.log(this.content[0].details[1].vid);
+    // this.activeId = this.content.0.0.vid;
+    // if (this.content) {
+    //   console.log(this.content[0].details[1].vid);
+    //   this.activeId = this.content[0].details[1].vid;
+    // }
+  },
+  methods: {
+    onChangeActive(id) {
+      this.$emit("changeActive", id);
+      this.activeId = id;
+    }
   }
 };
 </script>

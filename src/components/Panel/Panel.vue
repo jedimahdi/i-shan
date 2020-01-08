@@ -27,5 +27,6 @@ export default {
   position: relative;
   background-color: #e5e5e4ff;
   padding-right: 100px;
+  overflow-x: hidden;
 }
 </style>

@@ -24,8 +24,10 @@ export default {
   height: 46px;
   margin: 1px;
   border-radius: 50%;
-  border: 5px solid #510077;
-  border-color: #510077 transparent #510077 transparent;
+  /* border: 5px solid #510077; */
+  border: 5px solid #42b547ff;
+  border-color: #42b547ff transparent #42b547ff transparent;
+  /* border-color: #510077 transparent #510077 transparent; */
   animation: lds-dual-ring 1.2s linear infinite;
 }
 

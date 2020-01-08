@@ -50,7 +50,7 @@ const routes = [
         component: Download
       },
       {
-        path: "course",
+        path: "course/:course_title",
         component: CourseVideos
       },
       {

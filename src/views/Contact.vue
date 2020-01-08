@@ -58,7 +58,6 @@ export default {
           { headers }
         )
         .then(res => {
-          console.log(res);
           this.title = "";
           this.body = "";
         });

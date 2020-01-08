@@ -18,7 +18,19 @@
       @after-leave="endTransition"
     >
       <dd v-if="item.active" class="accordion-item-details">
-        <div v-html="item.details" class="accordion-item-details-inner"></div>
+        <div class="accordion-item-details-inner">
+          <ul>
+            <li
+              v-for="day in item.details"
+              :key="day.vid"
+              :class="{ active: day.vid == activeId }"
+            >
+              <a href="#" @click="() => handleActiveItem(day.vid)">
+                {{ day.title }}</a
+              >
+            </li>
+          </ul>
+        </div>
       </dd>
     </transition>
   </div>
@@ -27,8 +39,11 @@
 <script>
 export default {
   name: "AccordionItem",
-  props: ["item", "multiple", "groupId"],
+  props: ["item", "multiple", "groupId", "activeId"],
   methods: {
+    handleActiveItem(vid) {
+      this.$emit("changeActive", vid);
+    },
     toggle(event) {
       if (this.multiple) this.item.active = !this.item.active;
       else {

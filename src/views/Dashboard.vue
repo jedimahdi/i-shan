@@ -18,8 +18,8 @@
 
 <script>
 import CourseList from "../components/CourseList/CourseList";
-import COURSES_DATA from "../../jsons/courses.json";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import COURSE_DATA from "../../jsons/courses.json";
 import api from "../utils/api";
 
 export default {
@@ -30,20 +30,28 @@ export default {
   },
   data: function() {
     return {
-      courses: COURSES_DATA,
-      isLoading: true
+      courses: COURSE_DATA,
+      isLoading: false
     };
   },
   mounted() {
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`
-    };
-    api.get("recCourse", { method: "get" }, { headers }).then(res => {
-      this.courses = res.data;
-      console.log(res);
+    if (this.$store.state.courses.length > 0) {
+      this.courses = this.$store.state.courses;
       this.isLoading = false;
-    });
+    } else {
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`
+      };
+      api.post("userRecCourse", {}, { headers }).then(res => {
+        this.courses = res.data;
+        this.$store.commit("set_courses", {
+          courses: res.data
+        });
+        console.log(res);
+        this.isLoading = false;
+      });
+    }
   }
 };
 </script>

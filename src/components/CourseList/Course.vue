@@ -1,34 +1,35 @@
 <template>
-  <Box class="course" v-bind:overflowx="false">
-    <div class="course-detail">
-      <h5 class="course-category">
-        <!-- <span class="lnr lnr-tag"></span> {{ course.category }} -->
-      </h5>
-      <h4 class="course-title">{{ course.title }}</h4>
-      <div class="course-info">
-        <div class="course-length">
-          <span class="lnr lnr-clock"></span>
-          06:10:25
-          <!-- {{ parseInt(course.duration / (60 * 24)) }}:10:25 -->
-        </div>
-        <div class="course-files">
-          <!-- <span class="lnr lnr-paperclip"></span> {{ course.attachments }} -->
-        </div>
-        <div class="course-inbox">
-          <!-- <span class="lnr lnr-inbox"></span> {{ course.messages[0] }} -->
+  <router-link :to="'/course/' + course.title" class="course-link">
+    <Box class="course" v-bind:overflowx="false">
+      <div class="course-detail">
+        <h5 class="course-category">
+          <span class="lnr lnr-tag"></span> دسته بندی
+        </h5>
+        <h4 class="course-title">{{ course.title }}</h4>
+        <div class="course-info">
+          <div class="course-length">
+            <span class="lnr lnr-clock"></span>
+            06:10:25
+            <!-- {{ parseInt(course.duration / (60 * 24)) }}:10:25 -->
+          </div>
+          <div class="course-files">
+            <span class="lnr lnr-paperclip"></span> 34
+          </div>
+          <div class="course-inbox"><span class="lnr lnr-inbox"></span> 93</div>
         </div>
       </div>
-    </div>
-    <div class="course-left">
-      <div class="remaining-percent">
-        <span class="green-mode">85</span> <span>درصــــــــــد تکمیل شده</span>
+      <div class="course-left">
+        <div class="remaining-percent">
+          <span class="green-mode">85</span>
+          <span>درصــــــــــد تکمیل شده</span>
+        </div>
+        <div class="remaining-percent">
+          <span class="red-mode">6</span>
+          <span>روز مـــــــــانده تا کلاس بعدی</span>
+        </div>
       </div>
-      <div class="remaining-percent">
-        <span class="red-mode">6</span>
-        <span>روز مـــــــــانده تا کلاس بعدی</span>
-      </div>
-    </div>
-  </Box>
+    </Box>
+  </router-link>
 </template>
 
 <script>
@@ -44,12 +45,20 @@ export default {
 </script>
 
 <style scoped>
+.course-link {
+  text-decoration: none;
+}
+
+.course-link:hover .course {
+  background-color: #fff;
+}
 .course {
   background-color: #f4f4f5ff;
   flex-basis: 48%;
   display: flex;
   justify-content: space-around;
   padding: 0 40px 0 0;
+  margin-bottom: 0;
 }
 
 .course-detail {
@@ -120,6 +129,7 @@ export default {
   font-weight: 600;
   margin-bottom: 30px;
   margin-top: 10px;
+  color: #000;
 }
 
 .remaining-percent {

@@ -19,7 +19,6 @@ const makeInstance = () => {
           axios
             .post(`${API_BASE_URL}token/refresh`, {}, { headers })
             .then(res => {
-              console.log(res);
               localStorage.setItem("login_time", new Date());
               localStorage.setItem("jwt", res.data.access_token);
             });

@@ -18,8 +18,18 @@ export default {
 
 <style scoped>
 .courses {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-between; */
+
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 30px;
+}
+
+@media screen and (max-width: 1378px) {
+  .courses {
+    grid-template-columns: auto;
+  }
 }
 </style>
