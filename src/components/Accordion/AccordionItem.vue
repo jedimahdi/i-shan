@@ -26,8 +26,15 @@
               :class="{ active: day.vid == activeId }"
             >
               <a href="#" @click="() => handleActiveItem(day.vid)">
-                {{ day.title }}</a
-              >
+                {{ day.title }}
+                <button
+                  class="play icon-button"
+                  id="video-status"
+                  data-icon="P"
+                  aria-label="play pause toggle"
+                  v-if="day.vid == activeId"
+                ></button>
+              </a>
             </li>
           </ul>
         </div>
@@ -40,32 +47,45 @@
 export default {
   name: "AccordionItem",
   props: ["item", "multiple", "groupId", "activeId"],
+  mounted() {
+    const media = document.querySelector("#videoPlayer")
+    // const status = document.querySelector("#video-status")
+    media.addEventListener("timeupdate", () => {
+      const status = document.querySelector("#video-status")
+      if (media.paused) {
+        // status.innerHTML = ""
+        status.setAttribute("data-icon", "u")
+      } else {
+        status.setAttribute("data-icon", "P")
+      }
+    })
+  },
   methods: {
     handleActiveItem(vid) {
-      this.$emit("changeActive", vid);
+      this.$emit("changeActive", vid)
     },
     toggle(event) {
-      if (this.multiple) this.item.active = !this.item.active;
+      if (this.multiple) this.item.active = !this.item.active
       else {
         this.$parent.$children.forEach(item => {
           if (
             item.$el.id === event.currentTarget.parentElement.parentElement.id
           )
-            item.item.active = !item.item.active;
-          else item.item.active = false;
-        });
+            item.item.active = !item.item.active
+          else item.item.active = false
+        })
       }
     },
 
     startTransition(el) {
-      el.style.height = el.scrollHeight + "px";
+      el.style.height = el.scrollHeight + "px"
     },
 
     endTransition(el) {
-      el.style.height = "";
+      el.style.height = ""
     }
   }
-};
+}
 </script>
 
 <style>
@@ -121,7 +141,9 @@ export default {
 .accordion-item-details-inner li a {
   text-decoration: none;
   color: #211e1eff;
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 5px;
   padding-right: 70px;
 }
@@ -142,5 +164,20 @@ export default {
 .accordion-item-enter,
 .accordion-item-leave-to {
   height: 0 !important;
+}
+#video-status {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+#video-status:before {
+  font-family: "Heydings Controls";
+  /* font-size: 25px; */
+  position: relative;
+  content: attr(data-icon);
+  /* color: #aaa; */
+  /* text-shadow: 1px 1px 0px black; */
 }
 </style>

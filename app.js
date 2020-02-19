@@ -9,15 +9,6 @@ if (process.env.NODE_ENV === "DEV") {
   url = `file://${process.cwd()}/dist/index.html`
 }
 
-const reverseStr = str => {
-  return str
-    .split("")
-    .reverse()
-    .join("")
-}
-
-console.log(reverseStr(url))
-
 app.on("ready", () => {
   let window = new BrowserWindow({ width: 1600, height: 800 })
   window.loadURL(url)

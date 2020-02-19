@@ -1,4 +1,7 @@
 export const normalizeTime = time => {
+  if (isNaN(time)) {
+    return "00:00"
+  }
   let minutes = Math.floor(time / 60)
   let seconds = Math.floor(time - minutes * 60)
   let minuteValue
@@ -18,10 +21,9 @@ export const normalizeTime = time => {
   return minuteValue + ":" + secondValue
 }
 
-export const setTime = (media, timer, duration, timerWrapper, timerBar) => {
+export const setTime = (media, timer, timerWrapper, timerBar) => {
   let mediaTime = normalizeTime(media.currentTime)
   timer.textContent = mediaTime
-  duration.textContent = normalizeTime(media.duration)
 
   let barLength =
     timerWrapper.clientWidth * (media.currentTime / media.duration)
@@ -62,9 +64,9 @@ export const changeButtonType = (btn, value) => {
   btn.title = value
   // btn.innerHTML = value
   if (value === "mute") {
-    btn.className = "lnr lnr-volume-high"
-  } else {
     btn.className = "lnr lnr-volume"
+  } else {
+    btn.className = "lnr lnr-volume-" + value
   }
 }
 
@@ -88,4 +90,10 @@ export const playPauseMedia = (media, play) => {
     play.setAttribute("data-icon", "P")
     media.pause()
   }
+}
+
+export const stopMedia = (media, play) => {
+  media.pause()
+  media.currentTime = 0
+  play.setAttribute("data-icon", "P")
 }

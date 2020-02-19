@@ -10,7 +10,7 @@
         <div></div>
       </div>
       <div class="times">
-        <span class="duration">00:00</span>
+        <span class="duration"></span>
         <span class="watched-time">00:00</span>
       </div>
       <!-- <button class="icon-button stop" data-icon="S" aria-label="stop"></button>
@@ -63,14 +63,24 @@ import {
   toggleFullScreen,
   changeButtonType,
   muteVolume,
-  playPauseMedia
+  playPauseMedia,
+  normalizeTime,
+  stopMedia
 } from "./VideoHelpers"
 
 export default {
   name: "VideoPlayer",
   props: ["src"],
+  watch: {
+    src: function() {
+      // watch it
+
+      const timerBar = document.querySelector(".timer div")
+      timerBar.style.width = "0px"
+    }
+  },
   mounted() {
-    const media = document.querySelector("video")
+    const media = document.querySelector("#videoPlayer")
     const timerWrapper = document.querySelector(".timer")
     const playerOverlay = document.querySelector(".player-overlay")
     const timer = document.querySelector(".times .watched-time")
@@ -80,7 +90,20 @@ export default {
     const volumeBar = document.getElementById("volume-bar")
     const fullscreenBtn = document.getElementById("fullscreenBtn")
     // const rwd = document.querySelector(".rwd")
-    // const fwd = document.querySelector(".fwd")
+    const fwd = document.querySelector(".fwd")
+
+    fwd.addEventListener("click", () => {
+      media.pause()
+      let intervalFwd = setInterval(() => {
+        if (media.currentTime >= media.duration - 3) {
+          fwd.classList.remove("active")
+          clearInterval(intervalFwd)
+          stopMedia()
+        } else {
+          media.currentTime += 1
+        }
+      }, 300)
+    })
 
     fullscreenBtn.addEventListener("click", () => {
       toggleFullScreen(media)
@@ -91,9 +114,20 @@ export default {
     })
     media.addEventListener(
       "volumechange",
-      function() {
-        if (media.muted) changeButtonType(btnMute, "unmute")
-        else changeButtonType(btnMute, "mute")
+      function(e) {
+        const { volume } = e.target
+        if (media.muted) changeButtonType(btnMute, "mute")
+        else {
+          if (volume >= 0.7) {
+            changeButtonType(btnMute, "high")
+          } else if (volume >= 0.4 && volume < 0.7) {
+            changeButtonType(btnMute, "medium")
+          } else if (volume > 0 && volume < 0.4) {
+            changeButtonType(btnMute, "low")
+          } else {
+            changeButtonType(btnMute, "mute")
+          }
+        }
       },
       false
     )
@@ -111,13 +145,34 @@ export default {
       false
     )
 
-    media.addEventListener("timeupdate", () =>
-      setTime(media, timer, duration, timerWrapper, timerBar)
-    )
+    media.addEventListener("timeupdate", () => {
+      setTime(media, timer, timerWrapper, timerBar)
+      setInterval(function(t) {
+        if (media.readyState > 0) {
+          duration.textContent = normalizeTime(media.duration)
+          clearInterval(t)
+        }
+      }, 500)
+    })
+
     timerWrapper.addEventListener("click", e => {
       media.currentTime =
         media.duration * (e.offsetX / timerWrapper.clientWidth)
     })
+
+    document.onkeypress = myKeyPressHandler
+
+    function myKeyPressHandler(e) {
+      if (e.keyCode === 32) {
+        e.preventDefault()
+
+        const media = document.querySelector("#videoPlayer")
+        const play = document.querySelector(".play")
+        if (media) {
+          playPauseMedia(media, play)
+        }
+      }
+    }
   }
 }
 </script>
@@ -194,7 +249,7 @@ button.icon-button:before {
 }
 .fwd:before,
 .rwd:before {
-  font-size: 32px;
+  font-size: 28px;
   color: #fff;
 }
 
@@ -280,6 +335,7 @@ button.icon-button:before {
   height: 1.5em;
   background: transparent;
   font: 1em/1 arial, sans-serif;
+  direction: ltr;
 }
 [type="range"],
 [type="range"]::-webkit-slider-thumb {
@@ -338,13 +394,13 @@ button.icon-button:before {
 
 .player-overlay-shadow {
   /* background-color: #000; */
-  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
   position: absolute;
   bottom: 5px;
   left: 0;
   right: 0;
   height: 120px;
-  transition: 0.5s all;
+  transition: 0.6s all;
   opacity: 0;
 }
 

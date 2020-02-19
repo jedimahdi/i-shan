@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import AccordionItem from "./AccordionItem";
+import AccordionItem from "./AccordionItem"
 
 export default {
   name: "Accordion",
@@ -38,12 +38,12 @@ export default {
     return {
       groupId: null,
       activeId: ""
-    };
+    }
   },
   mounted() {
-    this.groupId = this.$el.id;
+    this.groupId = this.$el.id
     if (this.initActive) {
-      this.activeId = this.initActive.vid;
+      this.activeId = this.initActive.vid
     }
     // console.log(this.content[0].details[1].vid);
     // this.activeId = this.content.0.0.vid;
@@ -54,11 +54,11 @@ export default {
   },
   methods: {
     onChangeActive(id) {
-      this.$emit("changeActive", id);
-      this.activeId = id;
+      this.$emit("changeActive", id)
+      this.activeId = id
     }
   }
-};
+}
 </script>
 
 <style scoped>
