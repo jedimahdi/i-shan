@@ -8,6 +8,9 @@
         <span>i-shan.ir</span>
       </div>
       <div class="login-form">
+        <div class="alert alert-error" v-if="hasError">
+          نام کاربری یا رمز عبور اشتباه است
+        </div>
         <form v-on:submit.prevent="handleSubmit">
           <div class="input-control">
             <label for="username"><span class="lnr lnr-user"></span></label>
@@ -43,37 +46,43 @@
 </template>
 
 <script>
-import api from "../utils/api";
+import api from "../utils/api"
 
 export default {
   name: "Login",
   data: function() {
     return {
       mphone: "",
-      pass: ""
-    };
+      pass: "",
+      hasError: false
+    }
   },
   methods: {
     handleSubmit: function() {
+      this.hasError = false
       api
         .post("login", {
           mphone: this.mphone,
           pass: this.pass
         })
         .then(res => {
-          console.log(res);
-          localStorage.setItem("jwt", res.data.access_token);
-          localStorage.setItem("refresh_token", res.data.refresh_token);
-          localStorage.setItem("user", JSON.stringify(res.data.user_data));
-          localStorage.setItem("login_time", new Date());
-          this.$router.push("/");
+          console.log(res)
+          if (res.data.status === 400) {
+            this.hasError = true
+          } else {
+            localStorage.setItem("jwt", res.data.access_token)
+            localStorage.setItem("refresh_token", res.data.refresh_token)
+            localStorage.setItem("user", JSON.stringify(res.data.user_data))
+            localStorage.setItem("login_time", new Date())
+            this.$router.push("/")
+          }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     }
   }
-};
+}
 </script>
 
 <style>
@@ -93,10 +102,11 @@ body {
 .login {
   width: 100%;
   max-width: 620px;
-  height: 200px;
+  min-height: 200px;
   margin: auto;
   padding: 15px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 

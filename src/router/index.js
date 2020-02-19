@@ -1,19 +1,19 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from "vue"
+import VueRouter from "vue-router"
 
-import Panel from "../components/Panel/Panel.vue";
-import Dashboard from "../views/Dashboard.vue";
-import Login from "../views/Login.vue";
-import Inbox from "../views/Inbox";
-import Sent from "../views/Sent";
-import Marks from "../views/Marks";
-import Settings from "../views/Settings";
-import Contact from "../views/Contact";
-import Download from "../views/Download";
-import CourseVideos from "../views/CourseVideos";
-import Logout from "../views/Logout";
+import Panel from "../components/Panel/Panel.vue"
+import Dashboard from "../views/Dashboard.vue"
+import Login from "../views/Login.vue"
+import Inbox from "../views/Inbox"
+import Sent from "../views/Sent"
+import Marks from "../views/Marks"
+import Settings from "../views/Settings"
+import Contact from "../views/Contact"
+import Download from "../views/Download"
+import CourseVideos from "../views/CourseVideos"
+import Logout from "../views/Logout"
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
@@ -59,7 +59,7 @@ const routes = [
       }
     ],
     meta: {
-      requiresAuth: true
+      // requiresAuth: true
     }
   },
   {
@@ -70,13 +70,19 @@ const routes = [
       guest: true
     }
   }
-];
+]
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
-});
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+    return { x: 0, y: 0 }
+  }
+})
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
@@ -84,19 +90,19 @@ router.beforeEach((to, from, next) => {
       next({
         path: "/login",
         params: { nextUrl: to.fullPath }
-      });
+      })
     } else {
-      next();
+      next()
     }
   } else if (to.matched.some(record => record.meta.guest)) {
     if (localStorage.getItem("jwt") == null) {
-      next();
+      next()
     } else {
-      next({ path: "/" });
+      next({ path: "/" })
     }
   } else {
-    next();
+    next()
   }
-});
+})
 
-export default router;
+export default router

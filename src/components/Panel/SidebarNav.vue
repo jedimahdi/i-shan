@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import SidebarLink from "./SidebarLink";
+import SidebarLink from "./SidebarLink"
 export default {
   name: "SidebarNav",
   components: {
     SidebarLink
   }
-};
+}
 </script>
 
 <style scoped>

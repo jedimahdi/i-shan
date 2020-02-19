@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import SidebarNav from "./SidebarNav";
-import Logo from "./Logo";
+import SidebarNav from "./SidebarNav"
+import Logo from "./Logo"
 
 export default {
   name: "Sidebar",
@@ -15,7 +15,7 @@ export default {
     SidebarNav,
     Logo
   }
-};
+}
 </script>
 
 <style scoped>
@@ -26,5 +26,12 @@ export default {
   position: fixed;
   right: 0;
   z-index: 1;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
 }
 </style>

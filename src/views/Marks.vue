@@ -38,11 +38,11 @@
 </template>
 
 <script>
-import Box from "../components/Box/Box";
-import CustomSelect from "../components/CustomSelect/CustomSelect";
-import RadarChart from "../components/RadarChart/RadarChart";
-import LineChart from "../components/LineChart/LineChart";
-import MarksTable from "../components/MarksTable/MarksTable";
+import Box from "../components/Box/Box"
+import CustomSelect from "../components/CustomSelect/CustomSelect"
+import RadarChart from "../components/RadarChart/RadarChart"
+import LineChart from "../components/LineChart/LineChart"
+import MarksTable from "../components/MarksTable/MarksTable"
 
 export default {
   name: "Marks",
@@ -53,7 +53,7 @@ export default {
     LineChart,
     MarksTable
   }
-};
+}
 </script>
 
 <style scoped>
@@ -63,6 +63,8 @@ export default {
 .select-course {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .box-title {
@@ -91,5 +93,19 @@ export default {
 
 .average-total-marks {
   color: #f3976fff;
+}
+@media (max-width: 768px) {
+  .box-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .total-mark h6 {
+    font-size: 16px;
+  }
+
+  .total-mark small {
+    font-size: 18px;
+  }
 }
 </style>

@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import CustomSelect from "../CustomSelect/CustomSelect";
+import CustomSelect from "../CustomSelect/CustomSelect"
 export default {
   name: "Option",
   components: {
     CustomSelect
   }
-};
+}
 </script>
 
 <style scoped>
@@ -33,6 +33,6 @@ export default {
   font-size: 24px;
 }
 
-.option-select {
-}
+/* .option-select {
+} */
 </style>

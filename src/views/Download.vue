@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import DownloadsTable from "../components/DownloadsTable/DownloadsTable";
-import Box from "../components/Box/Box";
-import data from "../../jsons/downloads.json";
+import DownloadsTable from "../components/DownloadsTable/DownloadsTable"
+import Box from "../components/Box/Box"
+import data from "../../jsons/downloads.json"
 
 export default {
   name: "Download",
@@ -20,9 +20,9 @@ export default {
   data: function() {
     return {
       downloads: data
-    };
+    }
   }
-};
+}
 </script>
 
 <style scoped>

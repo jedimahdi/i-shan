@@ -1,15 +1,15 @@
 <template>
   <apexchart
-    width="800"
+    width="450"
     type="radar"
-    height="350"
+    height="450"
     :options="chartOptions"
     :series="series"
   ></apexchart>
 </template>
 
 <script>
-import VueApexCharts from "vue-apexcharts";
+import VueApexCharts from "vue-apexcharts"
 
 export default {
   name: "RadarChart",
@@ -47,11 +47,11 @@ export default {
           opacity: 0
         },
         legend: {
-          position: "right",
+          position: "bottom",
           fontSize: "18px",
           horizontalAlign: "center",
           fontFamily: "Segoe UI, Arial",
-          offsetY: 100,
+          // offsetY: 100,
           markers: {
             radius: 0
           }
@@ -70,7 +70,7 @@ export default {
         tooltip: {
           y: {
             formatter: function(val) {
-              return val;
+              return val
             }
           }
         },
@@ -79,17 +79,17 @@ export default {
           labels: {
             formatter: function(val, i) {
               if (i % 2 === 0) {
-                return val;
+                return val
               } else {
-                return "";
+                return ""
               }
             }
           }
         }
       }
-    };
+    }
   }
-};
+}
 </script>
 
 <style>

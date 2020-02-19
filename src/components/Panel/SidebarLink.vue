@@ -15,10 +15,10 @@ export default {
   },
   computed: {
     getIcon() {
-      return "lnr lnr-" + this.icon;
+      return "lnr lnr-" + this.icon
     }
   }
-};
+}
 </script>
 
 <style scoped>

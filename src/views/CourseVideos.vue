@@ -11,15 +11,10 @@
         ></Accordion>
       </div>
       <div class="course-video">
-        <video
+        <VideoPlayer
           v-if="activeDay !== null"
-          muted="muted"
-          controls
           :src="'http://136.243.32.172' + activeDay.vid"
-          id="videoPlayer"
-        >
-          <!-- <source  /> -->
-        </video>
+        />
 
         <Box>
           <div class="description-top">
@@ -43,9 +38,12 @@
 </template>
 
 <script>
-import Accordion from "../components/Accordion/Accordion";
-import Box from "../components/Box/Box";
-import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import Accordion from "../components/Accordion/Accordion"
+import Box from "../components/Box/Box"
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner"
+import VideoPlayer from "../components/VideoPlayer/VideoPlayer"
+import { handleRefreshToken, getUserCourses } from "../utils/services"
+import { normalizeCourses } from "../utils/helpers"
 // import Hls from 'hls.js';
 // import crypto from "crypto-js";
 // import axios from "axios";
@@ -94,7 +92,8 @@ export default {
   components: {
     Accordion,
     Box,
-    LoadingSpinner
+    LoadingSpinner,
+    VideoPlayer
   },
   data: function() {
     return {
@@ -102,22 +101,40 @@ export default {
       course: {},
       activeDay: null,
       isLoading: true
-    };
+    }
   },
-  mounted() {
+  async mounted() {
+    if (this.$store.state.courses.length <= 0) {
+      try {
+        await handleRefreshToken()
+        let courses = await getUserCourses()
+
+        courses = normalizeCourses(courses)
+        courses = [].concat(courses).sort((a, b) => {
+          return a.remaining_days - b.remaining_days
+        })
+
+        this.$store.commit("set_courses", {
+          courses: courses
+        })
+      } catch (err) {
+        this.error = true
+      }
+    }
+
     const course = this.$store.state.courses.find(
       course => course.title === this.$route.params.course_title
-    );
+    )
 
-    this.course = course;
+    this.course = course
 
-    let i = 0;
+    let i = 0
 
-    const course_weeks = course.weeks;
-    let weeks = [];
+    const course_weeks = course.weeks
+    let weeks = []
     for (let week in course.weeks) {
       // if (course_weeks[week]) {
-      i += 1;
+      i += 1
       //   let details = "<ul>";
       //   for (let day in course_weeks[week]) {
       //     details += `<li><a href="#">${course_weeks[week][day].title}</a></li>`;
@@ -129,7 +146,7 @@ export default {
         details: course_weeks[week],
         active: i === 1,
         id: i
-      });
+      })
       // }
     }
     // const weeks = course.weeks.map(week => {
@@ -137,10 +154,10 @@ export default {
     //   console.log(week);
     // });
 
-    this.weeks = weeks;
-    this.activeDay = weeks[0].details[1];
+    this.weeks = weeks
+    this.activeDay = weeks[0].details[1]
 
-    this.isLoading = false;
+    this.isLoading = false
     // console.log(course);
 
     // const video = document.getElementById("videoPlayer");
@@ -172,17 +189,17 @@ export default {
   },
   methods: {
     onChangeActive(id) {
-      const course_weeks = this.course.weeks;
+      const course_weeks = this.course.weeks
       for (let week in course_weeks) {
         for (let day in course_weeks[week]) {
           if (course_weeks[week][day].vid == id) {
-            this.activeDay = course_weeks[week][day];
+            this.activeDay = course_weeks[week][day]
           }
         }
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -206,10 +223,10 @@ export default {
   padding-right: 330px;
   padding-bottom: 0;
 }
-#videoPlayer {
+/* #videoPlayer {
   width: 100%;
   margin-bottom: 40px;
-}
+} */
 
 .description-top {
   display: flex;

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Course from "./Course";
+import Course from "./Course"
 
 export default {
   name: "CourseList",
@@ -13,7 +13,7 @@ export default {
   components: {
     Course
   }
-};
+}
 </script>
 
 <style scoped>

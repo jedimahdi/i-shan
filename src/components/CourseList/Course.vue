@@ -13,18 +13,24 @@
             <!-- {{ parseInt(course.duration / (60 * 24)) }}:10:25 -->
           </div>
           <div class="course-files">
-            <span class="lnr lnr-paperclip"></span> 34
+            <span class="lnr lnr-paperclip"></span> {{ toPersianDigits(34) }}
           </div>
-          <div class="course-inbox"><span class="lnr lnr-inbox"></span> 93</div>
+          <div class="course-inbox">
+            <span class="lnr lnr-inbox"></span> {{ toPersianDigits(93) }}
+          </div>
         </div>
       </div>
       <div class="course-left">
         <div class="remaining-percent">
-          <span class="green-mode">85</span>
+          <span class="green-mode">{{
+            toPersianDigits(course.remaining_percent)
+          }}</span>
           <span>درصــــــــــد تکمیل شده</span>
         </div>
         <div class="remaining-percent">
-          <span class="red-mode">6</span>
+          <span class="red-mode">{{
+            toPersianDigits(course.remaining_days)
+          }}</span>
           <span>روز مـــــــــانده تا کلاس بعدی</span>
         </div>
       </div>
@@ -33,15 +39,19 @@
 </template>
 
 <script>
-import Box from "../Box/Box";
+import Box from "../Box/Box"
+import { toPersianDigits } from "../../utils/helpers"
 
 export default {
   name: "Course",
   props: ["course"],
   components: {
     Box
+  },
+  methods: {
+    toPersianDigits
   }
-};
+}
 </script>
 
 <style scoped>
@@ -81,20 +91,20 @@ export default {
   color: #8f9199ff;
   display: flex;
   justify-content: space-between;
-  width: 250px;
+  /* width: 250px; */
   border: 1px solid #e3e3e3ff;
-  padding: 10px 30px;
+  padding: 10px 0;
 }
 
 .course-length,
 .course-files {
   border-left: 1px solid #e3e3e3ff;
-  padding-left: 25px;
+  /* padding-left: 25px; */
 }
 
 .course-info > div {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .course-info .lnr {
@@ -113,6 +123,7 @@ export default {
 .green-mode,
 .red-mode {
   font-size: 40px;
+  font-weight: 600;
   margin-left: 10px;
 }
 
@@ -139,5 +150,42 @@ export default {
   align-items: center;
   font-size: 14px;
   color: #8f9199ff;
+}
+
+@media (max-width: 768px) {
+  .course {
+    padding-right: 25px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+  .course-detail {
+    padding-left: 25px;
+  }
+  .course-title {
+    font-size: 22px;
+  }
+
+  .course-info {
+    padding: 5px 0;
+  }
+  .course-info > div {
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .course-left {
+    padding: 10px;
+  }
+  .course-left > div {
+    padding: 10px;
+  }
+  .course-left .red-mode,
+  .course-left .green-mode {
+    font-size: 30px;
+  }
+  .remaining-percent {
+    font-size: 11px;
+  }
 }
 </style>

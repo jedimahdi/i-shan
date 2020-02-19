@@ -36,7 +36,7 @@
 <script>
 // import axios from "axios";
 // import { API_BASE_URL } from "../../vars";
-import api from "../utils/api";
+import api from "../utils/api"
 
 export default {
   name: "Contact",
@@ -44,13 +44,13 @@ export default {
     return {
       title: "",
       body: ""
-    };
+    }
   },
   methods: {
     handleSubmit: function() {
       const headers = {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`
-      };
+      }
       api
         .post(
           "mail/send",
@@ -58,12 +58,12 @@ export default {
           { headers }
         )
         .then(() => {
-          this.title = "";
-          this.body = "";
-        });
+          this.title = ""
+          this.body = ""
+        })
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -117,6 +117,8 @@ export default {
   background-color: #e3e3e3ff;
   border-radius: 10px;
   font-size: 16px;
+  width: 100% !important;
+  min-height: 150px;
 }
 
 .contact-form button {
