@@ -42,3 +42,31 @@ export const getUserCourses = async () => {
 
   return res.data
 }
+
+export const getInboxMails = async () => {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("jwt")}`
+  }
+  const res = await axios.post(
+    `${API_BASE_URL}mail/get`,
+    { method: "get" },
+    { headers }
+  )
+
+  return res.data
+}
+
+export const getSentMails = async () => {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("jwt")}`
+  }
+
+  const res = await axios.post(
+    `${API_BASE_URL}mail/get`,
+    { method: "sent" },
+    { headers }
+  )
+  return res.data
+}

@@ -6,6 +6,7 @@
         <Accordion
           id="accordion-example-2"
           :content="weeks"
+          :course="course"
           :initActive="activeDay"
           @changeActive="onChangeActive"
         ></Accordion>
@@ -20,10 +21,10 @@
           <div class="description-top">
             <h5>{{ activeDay.title }}</h5>
             <div class="description-link">
-              <a href="#"
+              <a :href="'http://136.243.32.172' + activeDay.files"
                 >دانلود فایل تمرین <span class="lnr lnr-download"></span
               ></a>
-              <a href="#">
+              <a href="#" v-if="activeDay.last">
                 ارسال فایل تمرین <span class="lnr lnr-upload"></span
               ></a>
             </div>
@@ -126,10 +127,34 @@ export default {
       course => course.title === this.$route.params.course_title
     )
 
+    // let weeks = []
+    // const items = course.weeks
+    // let nitems = []
+    // let innerArray = []
+    // for (let week in items) {
+    //   innerArray = []
+    //   for (let day in items[week]) {
+    //     let b = items[week][day]
+
+    //     innerArray.push({
+    //       week: week,
+    //       // day: day,
+    //       title: b.title,
+    //       desc: b.desc,
+    //       files: b.files,
+    //       vid: b.vid
+    //     })
+    //   }
+
+    //   nitems.push(innerArray)
+    // }
+
+    // course.weeks = nitems
+
     this.course = course
+    console.log(this.course)
 
     let i = 0
-
     const course_weeks = course.weeks
     let weeks = []
     for (let week in course.weeks) {
@@ -140,6 +165,14 @@ export default {
       //     details += `<li><a href="#">${course_weeks[week][day].title}</a></li>`;
       //   }
       //   details += "</ul>";
+      let w = course_weeks[week]
+      console.log(w)
+
+      w[w.length - 1].last = true
+
+      // for (let b in w) {
+      //   console.log(w[b])
+      // }
 
       weeks.push({
         title: "هفته " + i,
@@ -147,6 +180,7 @@ export default {
         active: i === 1,
         id: i
       })
+
       // }
     }
     // const weeks = course.weeks.map(week => {
@@ -155,7 +189,12 @@ export default {
     // });
 
     this.weeks = weeks
+    // console.log(weeks[0].details)
     this.activeDay = weeks[0].details[1]
+    // console.log("active day")
+    // console.log(this.activeDay)
+
+    console.log(weeks)
 
     this.isLoading = false
     // console.log(course);

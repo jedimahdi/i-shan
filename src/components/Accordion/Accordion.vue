@@ -32,6 +32,9 @@ export default {
     },
     initActive: {
       type: Object
+    },
+    course: {
+      type: Object
     }
   },
   data() {

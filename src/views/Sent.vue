@@ -1,42 +1,43 @@
 <template>
   <section class="inbox">
+    <Error v-if="error" />
     <LoadingSpinner asOverlay="true" v-if="isLoading" />
-    <Messages v-if="!isLoading" :messages="messages" />
+    <Messages v-if="!isLoading && !error" :messages="messages" />
   </section>
 </template>
 
 <script>
-import Messages from "../components/Messages/Messages";
-import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
-import api from "../utils/api";
+import Messages from "../components/Messages/Messages"
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner"
+import Error from "../components/Error/Error"
+import { handleRefreshToken, getSentMails } from "../utils/services"
 
 export default {
   name: "Inbox",
   components: {
     Messages,
-    LoadingSpinner
+    LoadingSpinner,
+    Error
   },
   data: function() {
     return {
       messages: [],
-      isLoading: true
-    };
+      isLoading: true,
+      error: false
+    }
   },
-  mounted() {
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`
-    };
-    api.post("mail/get", { method: "sent" }, { headers }).then(res => {
-      let messages = res.data.map(message => ({ ...message, active: false }));
-      if (messages.length > 0) {
-        messages[0].active = true;
-      }
-      this.messages = messages;
-      this.isLoading = false;
-    });
+  async mounted() {
+    try {
+      await handleRefreshToken()
+      this.messages = await getSentMails()
+      console.log(this.messages)
+      this.isLoading = false
+    } catch (err) {
+      this.error = true
+      this.isLoading = false
+    }
   }
-};
+}
 </script>
 
 <style scoped></style>

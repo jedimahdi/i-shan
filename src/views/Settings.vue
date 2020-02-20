@@ -63,8 +63,8 @@
 </template>
 
 <script>
-import Box from "../components/Box/Box";
-import SettingsOption from "../components/SettingsOption/SettingsOption";
+import Box from "../components/Box/Box"
+import SettingsOption from "../components/SettingsOption/SettingsOption"
 
 export default {
   name: "Settings",
@@ -72,7 +72,7 @@ export default {
     Box,
     SettingsOption
   }
-};
+}
 </script>
 
 <style scoped>
