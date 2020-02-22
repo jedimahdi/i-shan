@@ -16,7 +16,8 @@
       </ul>
     </div>
     <Box class="message-items">
-      test
+      <div style="margin-bottom: 20px;">لیست پیام ها</div>
+
       <table class="messages-table" cellspacing="0">
         <tbody>
           <MessageItem

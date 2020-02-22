@@ -59,7 +59,7 @@ const routes = [
       }
     ],
     meta: {
-      // requiresAuth: true
+      requiresAuth: true
     }
   },
   {

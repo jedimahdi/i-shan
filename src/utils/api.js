@@ -19,8 +19,6 @@ export const handleRefreshToken = async () => {
         { headers }
       )
 
-      console.log(res)
-
       localStorage.setItem("login_time", new Date())
       localStorage.setItem("jwt", res.data.access_token)
     }
@@ -38,7 +36,6 @@ const makeInstance = () => {
         const now = new Date()
 
         if (now.getTime() - previous.getTime() >= 1 * 10 * 1000) {
-          console.log("here")
           const headers = {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("refresh_token")}`

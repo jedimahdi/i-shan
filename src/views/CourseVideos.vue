@@ -24,7 +24,7 @@
               <a :href="'http://136.243.32.172' + activeDay.files"
                 >دانلود فایل تمرین <span class="lnr lnr-download"></span
               ></a>
-              <a href="#" v-if="activeDay.last">
+              <a href="#">
                 ارسال فایل تمرین <span class="lnr lnr-upload"></span
               ></a>
             </div>
@@ -152,7 +152,6 @@ export default {
     // course.weeks = nitems
 
     this.course = course
-    console.log(this.course)
 
     let i = 0
     const course_weeks = course.weeks
@@ -165,10 +164,7 @@ export default {
       //     details += `<li><a href="#">${course_weeks[week][day].title}</a></li>`;
       //   }
       //   details += "</ul>";
-      let w = course_weeks[week]
-      console.log(w)
-
-      w[w.length - 1].last = true
+      // w[w.length - 1].last = true
 
       // for (let b in w) {
       //   console.log(w[b])
@@ -193,8 +189,6 @@ export default {
     this.activeDay = weeks[0].details[1]
     // console.log("active day")
     // console.log(this.activeDay)
-
-    console.log(weeks)
 
     this.isLoading = false
     // console.log(course);

@@ -67,8 +67,6 @@ export default {
           return a.remaining_days - b.remaining_days
         })
 
-        console.log(courses)
-
         this.$store.commit("set_courses", {
           courses: courses
         })

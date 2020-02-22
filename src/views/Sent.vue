@@ -30,7 +30,6 @@ export default {
     try {
       await handleRefreshToken()
       this.messages = await getSentMails()
-      console.log(this.messages)
       this.isLoading = false
     } catch (err) {
       this.error = true

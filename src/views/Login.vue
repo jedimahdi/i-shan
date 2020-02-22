@@ -54,7 +54,8 @@ export default {
     return {
       mphone: "",
       pass: "",
-      hasError: false
+      hasError: false,
+      error: ""
     }
   },
   methods: {
@@ -66,7 +67,6 @@ export default {
           pass: this.pass
         })
         .then(res => {
-          console.log(res)
           if (res.data.status === 400) {
             this.hasError = true
           } else {
@@ -78,7 +78,7 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err)
+          this.error = err
         })
     }
   }
