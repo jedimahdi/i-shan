@@ -14,14 +14,14 @@
       <div class="course-video">
         <VideoPlayer
           v-if="activeDay !== null"
-          :src="'http://136.243.32.172' + activeDay.vid"
+          :src="'http://app.i-shan.ir' + activeDay.vid"
         />
 
         <Box>
           <div class="description-top">
             <h5>{{ activeDay.title }}</h5>
             <div class="description-link">
-              <a :href="'http://136.243.32.172' + activeDay.files"
+              <a :href="'http://app.i-shan.ir' + activeDay.files"
                 >دانلود فایل تمرین <span class="lnr lnr-download"></span
               ></a>
               <a href="#">

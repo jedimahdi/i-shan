@@ -26,6 +26,7 @@ export default {
     localStorage.removeItem("jwt")
     localStorage.removeItem("refresh_token")
     localStorage.removeItem("user")
+    localStorage.removeItem("login_time")
     this.$router.push("/login")
   }
 }

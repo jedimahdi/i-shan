@@ -5,7 +5,7 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style>
@@ -15,9 +15,54 @@ html {
   height: 100%;
 }
 
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: bold;
+  src: url("./assets/fonts/eot/iranyekanwebbold.eot");
+  src: url("./assets/fonts/eot/iranyekanwebbold.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-8 */ url("./assets/fonts/woff2/iranyekanwebbold.woff2")
+      format("woff2"),
+    /* FF39+,Chrome36+, Opera24+*/
+      url("./assets/fonts/woff/iranyekanwebbold.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("./assets/fonts/ttf/iranyekanwebbold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 300;
+  src: url("./assets/fonts/eot/iranyekanweblight.eot");
+  src: url("./assets/fonts/eot/iranyekanweblight.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-8 */ url("./assets/fonts/woff2/iranyekanweblight.woff2")
+      format("woff2"),
+    /* FF39+,Chrome36+, Opera24+*/
+      url("./assets/fonts/woff/iranyekanweblight.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("./assets/fonts/ttf/iranyekanweblight.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/eot/iranyekanwebregular.eot");
+  src: url("./assets/fonts/eot/iranyekanwebregular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-8 */ url("./assets/fonts/woff2/iranyekanwebregular.woff2")
+      format("woff2"),
+    /* FF39+,Chrome36+, Opera24+*/
+      url("./assets/fonts/woff/iranyekanwebregular.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("./assets/fonts/ttf/iranyekanwebregular.ttf") format("truetype");
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "iranyekan", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
   height: 100%;
 }
