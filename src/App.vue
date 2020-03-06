@@ -67,6 +67,11 @@ body {
   height: 100%;
 }
 
+input,
+select {
+  font-family: "iranyekan";
+}
+
 h1,
 h2,
 h3,

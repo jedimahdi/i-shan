@@ -1,57 +1,62 @@
 <template>
-  <div class="player">
-    <video :src="src" id="videoPlayer">
-      <!-- <source  /> -->
-    </video>
-    <div class="player-overlay"></div>
-    <div class="player-overlay-shadow"></div>
-    <div class="controls">
-      <div class="timer">
-        <div></div>
-      </div>
-      <div class="times">
-        <span class="duration"></span>
-        <span class="watched-time">00:00</span>
-      </div>
-      <!-- <button class="icon-button stop" data-icon="S" aria-label="stop"></button>
+  <div>
+    <LoadingSpinner v-if="isLoading" :asSpace="true" />
+    <div class="player" :class="isLoading ? 'player-loading' : ''">
+      <video :src="src" id="videoPlayer">
+        <!-- <source  /> -->
+      </video>
+      <div class="player-overlay"></div>
+      <div class="player-overlay-shadow"></div>
+      <div class="controls">
+        <div class="timer">
+          <div></div>
+        </div>
+        <div class="times">
+          <span class="duration"></span>
+          <span class="watched-time">00:00</span>
+        </div>
+        <!-- <button class="icon-button stop" data-icon="S" aria-label="stop"></button>
       <div class="timer">
         <div></div>
         <span aria-label="timer">00:00</span>
       </div> -->
 
-      <div class="bottom-bar">
-        <div><span id="fullscreenBtn" class="lnr lnr-frame-expand"></span></div>
-        <div>
-          <input
-            type="range"
-            id="volume-bar"
-            title="volume"
-            min="0"
-            max="1"
-            step="0.1"
-            value="1"
-          />
-          <span id="btnMute" class="lnr lnr-volume-high"></span>
+        <div class="bottom-bar">
+          <div>
+            <span id="fullscreenBtn" class="lnr lnr-frame-expand"></span>
+          </div>
+          <div>
+            <input
+              type="range"
+              id="volume-bar"
+              title="volume"
+              min="0"
+              max="1"
+              step="0.1"
+              value="1"
+            />
+            <span id="btnMute" class="lnr lnr-volume-high"></span>
+          </div>
+          <div class="control-icons">
+            <button
+              class="fwd icon-button"
+              data-icon="F"
+              aria-label="fast forward"
+            ></button>
+            <button
+              class="play icon-button"
+              data-icon="P"
+              aria-label="play pause toggle"
+            ></button>
+            <button
+              class="rwd icon-button"
+              data-icon="B"
+              aria-label="rewind"
+            ></button>
+          </div>
+          <div style="width:150px"></div>
+          <div style="width: 26px"></div>
         </div>
-        <div class="control-icons">
-          <button
-            class="fwd icon-button"
-            data-icon="F"
-            aria-label="fast forward"
-          ></button>
-          <button
-            class="play icon-button"
-            data-icon="P"
-            aria-label="play pause toggle"
-          ></button>
-          <button
-            class="rwd icon-button"
-            data-icon="B"
-            aria-label="rewind"
-          ></button>
-        </div>
-        <div style="width:150px"></div>
-        <div style="width: 26px"></div>
       </div>
     </div>
   </div>
@@ -68,9 +73,17 @@ import {
   stopMedia
 } from "./VideoHelpers"
 
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner"
+
 export default {
   name: "VideoPlayer",
   props: ["src"],
+  components: { LoadingSpinner },
+  data: function() {
+    return {
+      isLoading: true
+    }
+  },
   watch: {
     src: function() {
       // watch it
@@ -91,6 +104,13 @@ export default {
     const fullscreenBtn = document.getElementById("fullscreenBtn")
     // const rwd = document.querySelector(".rwd")
     const fwd = document.querySelector(".fwd")
+
+    const interval = setInterval(() => {
+      if (media.readyState > 0) {
+        this.isLoading = false
+        clearInterval(interval)
+      }
+    }, 500)
 
     fwd.addEventListener("click", () => {
       media.pause()
@@ -415,5 +435,9 @@ button.icon-button:before {
   right: 0;
   top: 0;
   z-index: 1;
+}
+
+.player-loading {
+  visibility: hidden;
 }
 </style>

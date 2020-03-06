@@ -83,12 +83,14 @@ export const muteVolume = (player, btnMute) => {
 }
 
 export const playPauseMedia = (media, play) => {
-  if (media.paused) {
-    play.setAttribute("data-icon", "u")
-    media.play()
-  } else {
-    play.setAttribute("data-icon", "P")
-    media.pause()
+  if (play) {
+    if (media.paused) {
+      play.setAttribute("data-icon", "u")
+      media.play()
+    } else {
+      play.setAttribute("data-icon", "P")
+      media.pause()
+    }
   }
 }
 

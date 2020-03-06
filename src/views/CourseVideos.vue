@@ -185,13 +185,9 @@ export default {
     // });
 
     this.weeks = weeks
-    // console.log(weeks[0].details)
     this.activeDay = weeks[0].details[1]
-    // console.log("active day")
-    // console.log(this.activeDay)
 
     this.isLoading = false
-    // console.log(course);
 
     // const video = document.getElementById("videoPlayer");
     // console.log(video);

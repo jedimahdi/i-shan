@@ -20,6 +20,7 @@
         >
           <option value="remaining_days">روز مانده تا کلاس</option>
           <option value="remaining_percent">درصد تکمیل شده</option>
+          <option value="title">حروف الفبا</option>
         </select>
       </div>
     </header>
@@ -117,9 +118,17 @@ export default {
     handleChangeSort(e) {
       const { value } = e.target
 
-      this.courses = [].concat(this.$store.state.courses).sort((a, b) => {
-        return a[value] - b[value]
-      })
+      if (value === "title") {
+        this.courses = [].concat(this.$store.state.courses).sort((a, b) => {
+          if (a[value] < b[value]) return -1
+          if (a[value] > b[value]) return 1
+          return 0
+        })
+      } else {
+        this.courses = [].concat(this.$store.state.courses).sort((a, b) => {
+          return a[value] - b[value]
+        })
+      }
     }
   }
 }

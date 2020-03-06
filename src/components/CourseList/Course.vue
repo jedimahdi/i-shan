@@ -9,7 +9,7 @@
         <div class="course-info">
           <div class="course-length">
             <span class="lnr lnr-clock"></span>
-            06:10:25
+            ۰۶:۱۰:۲۵
             <!-- {{ parseInt(course.duration / (60 * 24)) }}:10:25 -->
           </div>
           <div class="course-files">
@@ -27,11 +27,16 @@
           }}</span>
           <span>درصــــــــــد تکمیل شده</span>
         </div>
-        <div class="remaining-percent">
+        <div class="remaining-percent" v-if="course.remaining_days !== 0">
           <span class="red-mode">{{
             toPersianDigits(course.remaining_days)
           }}</span>
           <span>روز مـــــــــانده تا کلاس بعدی</span>
+        </div>
+        <div class="remaining-percent" v-if="course.remaining_days === 0">
+          <span class="red-mode" style="font-size: 24px; padding: 12px"
+            >کلاس امروزه</span
+          >
         </div>
       </div>
     </Box>
@@ -72,7 +77,6 @@ export default {
 }
 
 .course-detail {
-  border-left: 1px solid #e3e3e3ff;
   padding-left: 50px;
   display: flex;
   flex-flow: column;
@@ -80,7 +84,8 @@ export default {
 }
 
 .course-left {
-  padding: 20px;
+  padding: 30px;
+  border-right: 1px solid #e3e3e3ff;
 }
 
 .course-left div:first-child {

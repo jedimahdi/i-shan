@@ -5,8 +5,18 @@
     :class="{ 'is-active': item.active }"
   >
     <dt class="accordion-item-title">
-      <button @click="toggle" class="accordion-item-trigger">
+      <button
+        @click="toggle"
+        class="accordion-item-trigger"
+        v-if="item.details"
+      >
         <h4 class="accordion-item-title-text">{{ item.title }}</h4>
+        <span class="accordion-item-trigger-icon"></span>
+      </button>
+      <button class="accordion-item-trigger" disabled v-if="!item.details">
+        <h4 class="accordion-item-title-text">
+          <span>{{ item.title }}</span> <span class="lnr lnr-lock"></span>
+        </h4>
         <span class="accordion-item-trigger-icon"></span>
       </button>
     </dt>
@@ -165,6 +175,11 @@ export default {
 .accordion-item-leave-to {
   height: 0 !important;
 }
+.accordion-item-title-text {
+  display: flex;
+  justify-content: space-between;
+}
+
 #video-status {
   border: 0;
   outline: 0;

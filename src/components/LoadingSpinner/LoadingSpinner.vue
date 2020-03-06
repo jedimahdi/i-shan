@@ -1,13 +1,18 @@
 <template>
-  <div v-bind:class="{ 'loading-spinner__overlay': asOverlay }">
+  <div
+    v-bind:class="{
+      'loading-spinner__overlay': asOverlay,
+      'loading-spinner__space': asSpace
+    }"
+  >
     <div class="lds-dual-ring"></div>
   </div>
 </template>
 <script>
 export default {
   name: "LoadingSpinner",
-  props: ["asOverlay"]
-};
+  props: ["asOverlay", "asSpace"]
+}
 </script>
 
 <style scoped>
@@ -38,6 +43,16 @@ export default {
   top: 0;
   left: 0;
   background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-spinner__space {
+  width: 100%;
+  /* height: 400px; */
+  position: relative;
+  top: 200px;
   display: flex;
   justify-content: center;
   align-items: center;

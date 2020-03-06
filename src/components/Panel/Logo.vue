@@ -1,6 +1,8 @@
 <template>
   <div class="logo">
-    <a href="#"><img src="../../assets/bitmap.png" alt="logo" width="35"/></a>
+    <a href="#"
+      ><img src="../../assets/logo/Blue.png" alt="logo" width="38"
+    /></a>
   </div>
 </template>
 
